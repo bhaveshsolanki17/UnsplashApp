@@ -31,7 +31,7 @@ download images from the Unsplash API.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/image-viewer-app.git
+   git clone https://github.com/bhaveshsolanki17/UnsplashApp.git
 
 2. **Add your Unsplash API key:**
 
