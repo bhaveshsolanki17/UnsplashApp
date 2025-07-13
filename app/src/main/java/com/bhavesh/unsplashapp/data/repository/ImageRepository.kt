@@ -7,9 +7,9 @@ import com.bhavesh.unsplashapp.data.model.UnsplashImage
 import kotlinx.coroutines.flow.Flow
 
 interface ImageRepository {
-    suspend fun getImages(): List<UnsplashImage>
+    suspend fun getImages(page: Int): List<UnsplashImage>
     suspend fun getImage(id: String): UnsplashImage
-    suspend fun searchImages(query: String): List<UnsplashImage>
+    suspend fun searchImages(query: String, page: Int): List<UnsplashImage>
     fun getFavoriteImages(): Flow<List<FavoriteImage>>
     suspend fun addToFavorites(image: FavoriteImage)
     suspend fun removeFromFavorites(image: FavoriteImage)
@@ -20,11 +20,11 @@ class ImageRepositoryImpl(
     private val dao: ImageDao
 ) : ImageRepository {
 
-    override suspend fun getImages(): List<UnsplashImage> = api.getImages()
+    override suspend fun getImages(page: Int): List<UnsplashImage> = api.getImages(page)
     override suspend fun getImage(id: String): UnsplashImage = api.getImageDetails(id)
 
-    override suspend fun searchImages(query: String): List<UnsplashImage> =
-        api.searchImages(query).results
+    override suspend fun searchImages(query: String, page: Int): List<UnsplashImage> =
+        api.searchImages(query, page).results
 
     override fun getFavoriteImages(): Flow<List<FavoriteImage>> = dao.getFavorites()
 

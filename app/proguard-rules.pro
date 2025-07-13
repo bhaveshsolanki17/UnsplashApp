@@ -19,3 +19,28 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Compose specific rules
+-keep class androidx.compose.** { *; }
+-keep class androidx.activity.ComponentActivity { *; }
+
+# Prevent R8 from removing ViewModels and Hilt classes
+-keep class com.bhavesh.unsplashapp.** { *; }
+
+# For Hilt
+-keep class dagger.hilt.** { *; }
+-dontwarn dagger.hilt.**
+
+# Coil (Image loading)
+-keep class coil.** { *; }
+-dontwarn coil.**
+
+# Retrofit + Gson/Moshi
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.squareup.moshi.** { *; }
+-keep class com.google.gson.** { *; }
+-dontwarn com.squareup.moshi.**
+
+# Retrofit API interfaces
+-keep interface com.bhavesh.unsplashapp.data.api.** { *; }
